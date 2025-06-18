@@ -30,7 +30,7 @@ namespace PoligonSA
         public int X {  
             get { return x; } 
             set {
-                if (x >= 0) this.x = x;
+                if (x >= 0) this.x = X;
                 else throw new ArgumentException("Koordinate moraju biti nenegativne");
             } 
         }
@@ -39,7 +39,7 @@ namespace PoligonSA
             get { return y; }
             set
             {
-                if (y >= 0) this.y = y;
+                if (y >= 0) this.y = Y;
                 else throw new ArgumentException("Koordinate moraju biti nenegativne");
             }
         }

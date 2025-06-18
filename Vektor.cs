@@ -33,5 +33,11 @@ namespace PoligonSA
         {
             get { return (Math.Sqrt((kraj.X - pocetak.X) ^ 2 + (kraj.Y - pocetak.Y) ^ 2)); }
         }
+        public Tacka izCentra()
+        {
+            int x = Math.Abs(pocetak.X - kraj.X);
+            int y = Math.Abs(pocetak.Y - kraj.Y);
+            return new Tacka(x, y);
+        }
     }
 }
