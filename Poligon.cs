@@ -134,6 +134,8 @@ namespace PoligonSA
         }
         public double Povrsina()
         {
+            if (!jeProst()) { throw new Exception("Poligon mora biti prost"); }
+            if (Count < 3) { throw new Exception("Poligon mora imati minimum 3 temena"); }
             int zbir = vektori[vektori.Count - 1].Kraj.X * vektori[0].Kraj.Y - vektori[vektori.Count - 1].Kraj.Y * vektori[0].Kraj.X;
             for (int i = 0; i < vektori.Count - 1; i++)
             {
@@ -145,10 +147,13 @@ namespace PoligonSA
         public bool jeKonveksan()
         {
             int k;
-            k = Math.Sign(Ravan.VektorskiProizvod(vektori[vektori.Count - 1], vektori[0]));
-            for (int i = 0; i < vektori.Count - 2; i++)
+            k = Ravan.Orijentacija(vektori[vektori.Count - 1].Pocetak, vektori[vektori.Count - 1].Kraj, vektori[0].Kraj);
+            MessageBox.Show("k:" + k.ToString());
+            for (int i = 0; i < vektori.Count - 1; i++)
             {
-                if (Math.Sign(Ravan.VektorskiProizvod(vektori[i], vektori[i + 1])) != k)
+                MessageBox.Show(vektori[i].Pocetak.X.ToString() + " " + vektori[i].Kraj.X.ToString() +" "+ vektori[i+1].Pocetak.X.ToString() + " " + vektori[i+1].Kraj.X.ToString());
+                MessageBox.Show(vektori[i].Pocetak.Y.ToString() + " " + vektori[i].Kraj.Y.ToString() +" "+ vektori[i + 1].Pocetak.Y.ToString() + " " + vektori[i + 1].Kraj.Y.ToString());
+                if (Ravan.Orijentacija(vektori[i].Pocetak,vektori[i].Kraj, vektori[i + 1].Pocetak) != k)
                 {
                     return false;
                 }
@@ -222,18 +227,11 @@ namespace PoligonSA
         public void Load()
         {
             StreamReader sr = new StreamReader("poligon.txt");
-            string[] strings = sr.ReadLine().Split(' ');
-            Tacka prvi = new Tacka(int.Parse(strings[0]), int.Parse(strings[1]));
-            strings = sr.ReadLine().Split(' ');
-            Tacka temp = new Tacka(int.Parse(strings[0]), int.Parse(strings[1]));
-            Dodaj(new Vektor(prvi, temp));
             while (!sr.EndOfStream)
             {
-                strings = sr.ReadLine().Split(' ');
-                Dodaj(new Vektor(temp,new Tacka(int.Parse(strings[0]), int.Parse(strings[1]))));
-                temp = new Tacka(int.Parse(strings[0]), int.Parse(strings[1]));
+                string[] strings = sr.ReadLine().Split(' ');
+                Dodaj(new Tacka(int.Parse(strings[0]), int.Parse(strings[1])));
             }
-            Dodaj(new Vektor(temp, prvi));
             sr.Close();
         }
     }

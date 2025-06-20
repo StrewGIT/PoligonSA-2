@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace PoligonSA
@@ -13,6 +14,7 @@ namespace PoligonSA
     {
         public static int VektorskiProizvod(Vektor A, Vektor B)
         {
+            MessageBox.Show((A.izCentra().X * B.izCentra().Y - A.izCentra().Y * B.izCentra().X).ToString());
             return A.izCentra().X * B.izCentra().Y - A.izCentra().Y * B.izCentra().X;
         }
         public static int Orijentacija(Tacka p, Tacka q, Tacka r)

@@ -39,7 +39,7 @@ namespace PoligonSA
         }
         public double D
         {
-            get { return (Math.Sqrt((kraj.X - pocetak.X) ^ 2 + (kraj.Y - pocetak.Y) ^ 2)); }
+            get { return (Math.Sqrt((kraj.X - pocetak.X)* (kraj.X - pocetak.X) + (kraj.Y - pocetak.Y)* (kraj.Y - pocetak.Y))); }
         }
         public Tacka izCentra()
         {

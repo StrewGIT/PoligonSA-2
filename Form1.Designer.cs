@@ -39,8 +39,10 @@
             this.LblNaslov = new System.Windows.Forms.Label();
             this.BtnLoad = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BtnObim = new System.Windows.Forms.Button();
+            this.BtnProst = new System.Windows.Forms.Button();
+            this.BtnPovrsina = new System.Windows.Forms.Button();
+            this.BtnKonveksan = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,11 +105,13 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(725, 206);
+            this.flowLayoutPanel1.Controls.Add(this.BtnObim);
+            this.flowLayoutPanel1.Controls.Add(this.BtnProst);
+            this.flowLayoutPanel1.Controls.Add(this.BtnPovrsina);
+            this.flowLayoutPanel1.Controls.Add(this.BtnKonveksan);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(725, 205);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(292, 456);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 457);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // BtnObrisi
@@ -156,25 +160,49 @@
             this.BtnSave.UseVisualStyleBackColor = false;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // button1
+            // BtnObim
             // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnObim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnObim.Location = new System.Drawing.Point(3, 3);
+            this.BtnObim.Name = "BtnObim";
+            this.BtnObim.Size = new System.Drawing.Size(144, 49);
+            this.BtnObim.TabIndex = 0;
+            this.BtnObim.Text = "Obim";
+            this.BtnObim.UseVisualStyleBackColor = true;
+            this.BtnObim.Click += new System.EventHandler(this.BtnObim_Click);
             // 
-            // button2
+            // BtnProst
             // 
-            this.button2.Location = new System.Drawing.Point(84, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BtnProst.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProst.Location = new System.Drawing.Point(153, 3);
+            this.BtnProst.Name = "BtnProst";
+            this.BtnProst.Size = new System.Drawing.Size(144, 49);
+            this.BtnProst.TabIndex = 1;
+            this.BtnProst.Text = "Da li je prost?";
+            this.BtnProst.UseVisualStyleBackColor = true;
+            this.BtnProst.Click += new System.EventHandler(this.BtnProst_Click);
+            // 
+            // BtnPovrsina
+            // 
+            this.BtnPovrsina.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPovrsina.Location = new System.Drawing.Point(3, 58);
+            this.BtnPovrsina.Name = "BtnPovrsina";
+            this.BtnPovrsina.Size = new System.Drawing.Size(144, 49);
+            this.BtnPovrsina.TabIndex = 2;
+            this.BtnPovrsina.Text = "Površina";
+            this.BtnPovrsina.UseVisualStyleBackColor = true;
+            this.BtnPovrsina.Click += new System.EventHandler(this.BtnPovrsina_Click);
+            // 
+            // BtnKonveksan
+            // 
+            this.BtnKonveksan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnKonveksan.Location = new System.Drawing.Point(153, 58);
+            this.BtnKonveksan.Name = "BtnKonveksan";
+            this.BtnKonveksan.Size = new System.Drawing.Size(144, 49);
+            this.BtnKonveksan.TabIndex = 3;
+            this.BtnKonveksan.Text = "Da li je konveksan?";
+            this.BtnKonveksan.UseVisualStyleBackColor = true;
+            this.BtnKonveksan.Click += new System.EventHandler(this.BtnKonveksan_Click);
             // 
             // Form1
             // 
@@ -213,8 +241,10 @@
         private System.Windows.Forms.Label LblNaslov;
         private System.Windows.Forms.Button BtnLoad;
         private System.Windows.Forms.Button BtnSave;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnObim;
+        private System.Windows.Forms.Button BtnProst;
+        private System.Windows.Forms.Button BtnPovrsina;
+        private System.Windows.Forms.Button BtnKonveksan;
     }
 }
 
