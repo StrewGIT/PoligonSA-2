@@ -59,5 +59,52 @@ namespace PoligonSA
             }
             return (double)(zbir) / 2.0;
         }
+        public bool jeKonveksan()
+        {
+            int k;
+            k = Math.Sign(Ravan.VektorskiProizvod(vektori[vektori.Count - 1], vektori[0]));
+            for(int i=0;i<vektori.Count - 2; i++)
+            {
+                if (Math.Sign(Ravan.VektorskiProizvod(vektori[i], vektori[i+1]))!=k)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public Poligon KonveksniPokrivac()
+        {
+            Poligon Pokrivac = new Poligon();
+            int xLevo=int.MaxValue;
+            for(int i=0;i<vektori.Count; i++)
+            {
+                if (vektori[i].Kraj.X < vektori[xLevo].Kraj.X) { xLevo = i; }
+            }
+            int p, q;
+            p = xLevo;
+            do
+            {
+                q = (p + 1) % vektori.Count;
+                for (int i = 0; i < vektori.Count; i++)
+                {
+                    if (Ravan.Orijentacija(vektori[p].Kraj, vektori[i].Kraj, vektori[q].Kraj) == 2) q = i;
+                }
+                Pokrivac.Dodaj(new Vektor(vektori[p].Kraj, vektori[q].Kraj));
+                p = q;
+            }
+            while(p != xLevo);
+            return Pokrivac;
+        }
+        public bool PripadaTacka(Tacka A)
+        {
+            Tacka B = new Tacka(int.MaxValue,int.MaxValue);
+            int k = 0;
+            foreach (Vektor v in vektori)
+            {
+                if (Ravan.Sece(v, new Vektor(A, B)) == 1) k++;
+                else if (Ravan.Sece(v, new Vektor(A, B)) == -2) return true;
+            }
+            return false; // dovrsi
+        }
     }
 }

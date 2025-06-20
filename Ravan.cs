@@ -2,17 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
 namespace PoligonSA
 {
-    internal class Ravan
+    internal static class Ravan
     {
         public static int VektorskiProizvod(Vektor A, Vektor B)
         {
             return A.izCentra().X * B.izCentra().Y - A.izCentra().Y * B.izCentra().X;
+        }
+        public static int Orijentacija(Tacka p, Tacka q, Tacka r)
+        {
+            int val = VektorskiProizvod(new Vektor(p, q), new Vektor(q, r));
+
+            if (val == 0) return 0;
+            return (val > 0) ? 1 : 2;
         }
         public static bool SaIsteStrane(Tacka A, Tacka B, Vektor C)
         {
@@ -38,6 +46,36 @@ namespace PoligonSA
         {
             try
             {
+                SaIsteStrane(A.Pocetak, A.Kraj, B);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "Jedan")
+                {
+                    return -1;
+                }
+                else if (ex.Message == "Oba")
+                {
+                    return -2;
+                }
+            }
+            try
+            {
+                SaIsteStrane(B.Pocetak, B.Kraj, A);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "Jedan")
+                {
+                    return -3;
+                }
+                else if (ex.Message == "Oba")
+                {
+                    return -4;
+                }
+            }
+            try
+            {
                 if (SaIsteStrane(A.Pocetak, A.Kraj, B) || SaIsteStrane(B.Pocetak, B.Kraj, A))
                 {
                     return 0;
@@ -47,18 +85,12 @@ namespace PoligonSA
                     return 1;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                if(ex.Message == "Jedan")
-                {
-                    return -1;
-                }
-                else if(ex.Message == "Oba")
-                {
-                    return -2;
-                }
+
             }
             throw new NotImplementedException("Greska u metodi Sece");
         }
+        
     }
 }
