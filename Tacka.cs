@@ -11,6 +11,7 @@ namespace PoligonSA
         private static int brojac = 0;
         private int broj;
         private int x, y;
+        public int relX,relY;
         public Tacka(int x, int y)
         {
             if (x >= 0) this.x = x;
@@ -42,6 +43,10 @@ namespace PoligonSA
                 if (y >= 0) this.y = Y;
                 else throw new ArgumentException("Koordinate moraju biti nenegativne");
             }
+        }
+        public double D
+        {
+            get { return(Math.Sqrt(x*x + y*y));}
         }
     }
 }

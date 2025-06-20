@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,91 @@ namespace PoligonSA
     internal class Poligon
     {
         private List<Vektor> vektori;
+        public Vektor Vektori(int a)
+        {
+            return vektori[a];
+        }
+        public Tacka Leftmost
+        {
+            get
+            {
+                int xLevo = 0;
+                for (int i = 0; i < vektori.Count; i++)
+                {
+                    if (vektori[i].Kraj.X < vektori[xLevo].Kraj.X) { xLevo = i; }
+                }
+                return vektori[xLevo].Kraj;
+            }
+        }
+        public Tacka Rightmost
+        {
+            get
+            {
+                int xDesno = 0;
+                for (int i = 0; i < vektori.Count; i++)
+                {
+                    if (vektori[i].Kraj.X > vektori[xDesno].Kraj.X) { xDesno = i; }
+                }
+                return vektori[xDesno].Kraj;
+            }
+        }
+        public Tacka Topmost
+        {
+            get
+            {
+                int xGore = 0;
+                for (int i = 0; i < vektori.Count; i++)
+                {
+                    if (vektori[i].Kraj.Y < vektori[xGore].Kraj.Y) { xGore = i; }
+                }
+                return vektori[xGore].Kraj;
+            }
+        }
+        public Tacka Bottommost
+        {
+            get
+            {
+                int xDole = 0;
+                for (int i = 0; i < vektori.Count; i++)
+                {
+                    if (vektori[i].Kraj.Y > vektori[xDole].Kraj.Y) { xDole = i; }
+                }
+                return vektori[xDole].Kraj;
+            }
+        }
+        public int Count { get {  return vektori.Count; } }
         public Poligon()
         {
             vektori = new List<Vektor>();
+        }
+        //vektori.Add(new Vektor(vektor.Kraj, vektori[0].Pocetak));
+        public void Dodaj(Tacka tacka)
+        {
+            if (vektori.Count > 1)
+            {
+                tacka.relX = tacka.X - vektori[0].Pocetak.X;
+                tacka.relY = tacka.Y - vektori[0].Pocetak.Y;
+                vektori.RemoveAt(vektori.Count - 1);
+                vektori.Add(new Vektor(vektori.Last().Kraj, tacka));
+                vektori.Add(new Vektor(tacka, vektori[0].Pocetak));
+            }
+            else if (vektori.Count > 0)
+            {
+                tacka.relX = tacka.X - vektori[0].Kraj.X;
+                tacka.relY = tacka.Y - vektori[0].Kraj.Y;
+                Vektor temp = new Vektor(vektori[0].Kraj, tacka);
+                vektori.RemoveAt(0);
+                vektori.Add(temp);
+                vektori.Add(new Vektor(tacka, vektori[0].Pocetak));
+            }
+            else
+            {
+                tacka.relX = 0;
+                tacka.relY = 0;
+                vektori.Add(new Vektor(tacka));
+            }
+
+
         }
         public void Dodaj(Vektor vektor)
         {
@@ -20,9 +103,9 @@ namespace PoligonSA
         }
         public bool jeProst()
         {
-            for(int i=0;i<vektori.Count-1;i++)
+            for (int i = 0; i < vektori.Count - 1; i++)
             {
-                for(int j=i+1;j<vektori.Count;j++)
+                for (int j = i + 1; j < vektori.Count; j++)
                 {
                     try
                     {
@@ -31,12 +114,12 @@ namespace PoligonSA
                             return false;
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
                 }
-                
+
             }
             return true;
         }
@@ -63,9 +146,9 @@ namespace PoligonSA
         {
             int k;
             k = Math.Sign(Ravan.VektorskiProizvod(vektori[vektori.Count - 1], vektori[0]));
-            for(int i=0;i<vektori.Count - 2; i++)
+            for (int i = 0; i < vektori.Count - 2; i++)
             {
-                if (Math.Sign(Ravan.VektorskiProizvod(vektori[i], vektori[i+1]))!=k)
+                if (Math.Sign(Ravan.VektorskiProizvod(vektori[i], vektori[i + 1])) != k)
                 {
                     return false;
                 }
@@ -75,8 +158,8 @@ namespace PoligonSA
         public Poligon KonveksniPokrivac()
         {
             Poligon Pokrivac = new Poligon();
-            int xLevo=int.MaxValue;
-            for(int i=0;i<vektori.Count; i++)
+            int xLevo = 0;
+            for (int i = 0; i < vektori.Count; i++)
             {
                 if (vektori[i].Kraj.X < vektori[xLevo].Kraj.X) { xLevo = i; }
             }
@@ -92,19 +175,66 @@ namespace PoligonSA
                 Pokrivac.Dodaj(new Vektor(vektori[p].Kraj, vektori[q].Kraj));
                 p = q;
             }
-            while(p != xLevo);
+            while (p != xLevo);
             return Pokrivac;
         }
         public bool PripadaTacka(Tacka A)
         {
-            Tacka B = new Tacka(int.MaxValue,int.MaxValue);
+            bool alternate = false;
+            Random rand = new Random();
+            Tacka B = new Tacka(int.MaxValue, rand.Next(int.MaxValue));
             int k = 0;
             foreach (Vektor v in vektori)
             {
+            Loop:
                 if (Ravan.Sece(v, new Vektor(A, B)) == 1) k++;
-                else if (Ravan.Sece(v, new Vektor(A, B)) == -2) return true;
+                else if (Ravan.Sece(v, new Vektor(A, B)) == -2 || Ravan.Sece(v, new Vektor(A, B)) == -1) return true;
+                else if (Ravan.Sece(v, new Vektor(A, B)) == -3 || Ravan.Sece(v, new Vektor(A, B)) == -4)
+                {
+                    if (alternate)
+                    {
+                        B = new Tacka(int.MaxValue, rand.Next(int.MaxValue));
+                        alternate = false;
+                    }
+                    else
+                    {
+                        B = new Tacka(rand.Next(int.MaxValue), int.MaxValue);
+                        alternate = true;
+                    }
+                    goto Loop;
+                }
             }
-            return false; // dovrsi
+            return (k % 2 == 1);
+        }
+        public void Save()
+        {
+            if (vektori.Count < 3) { throw (new ArgumentException("Poligon mora imati 3 temena")); }
+            else
+            {
+                StreamWriter sr = new StreamWriter("poligon.txt") ;
+                foreach (Vektor v in vektori)
+                {
+                    sr.WriteLine(v.Pocetak.X.ToString() + " " + v.Pocetak.Y.ToString());
+                }
+                sr.Close();
+            }
+        }
+        public void Load()
+        {
+            StreamReader sr = new StreamReader("poligon.txt");
+            string[] strings = sr.ReadLine().Split(' ');
+            Tacka prvi = new Tacka(int.Parse(strings[0]), int.Parse(strings[1]));
+            strings = sr.ReadLine().Split(' ');
+            Tacka temp = new Tacka(int.Parse(strings[0]), int.Parse(strings[1]));
+            Dodaj(new Vektor(prvi, temp));
+            while (!sr.EndOfStream)
+            {
+                strings = sr.ReadLine().Split(' ');
+                Dodaj(new Vektor(temp,new Tacka(int.Parse(strings[0]), int.Parse(strings[1]))));
+                temp = new Tacka(int.Parse(strings[0]), int.Parse(strings[1]));
+            }
+            Dodaj(new Vektor(temp, prvi));
+            sr.Close();
         }
     }
 }
