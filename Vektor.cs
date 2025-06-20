@@ -11,6 +11,14 @@ namespace PoligonSA
     {
         private Tacka pocetak;
         private Tacka kraj;
+        public Tacka Pocetak
+        {
+            get { return pocetak; }
+        }
+        public Tacka Kraj
+        {
+            get { return kraj; }
+        }
         public Vektor(Tacka pocetak, Tacka kraj)
         {
             try
