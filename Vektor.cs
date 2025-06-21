@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PoligonSA
 {
-    internal class Vektor
+    public class Vektor
     {
         private Tacka pocetak;
         private Tacka kraj;
@@ -43,9 +43,9 @@ namespace PoligonSA
         }
         public Tacka izCentra()
         {
-            int x = Math.Abs(pocetak.X - kraj.X);
-            int y = Math.Abs(pocetak.Y - kraj.Y);
-            return new Tacka(x, y);
+            int x = pocetak.X - kraj.X;
+            int y = pocetak.Y - kraj.Y;
+            return new Tacka(x, y,true);
         }
     }
 }

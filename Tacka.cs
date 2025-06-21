@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoligonSA
 {
-    internal class Tacka
+    public class Tacka
     {
         private static int brojac = 0;
         private int broj;
@@ -20,6 +20,25 @@ namespace PoligonSA
             else throw new ArgumentException("Koordinate moraju biti nenegativne");
             brojac++;
             broj = brojac;
+        }
+        public Tacka(int x, int y,bool f)
+        {
+            if (f)
+            {
+                brojac++;
+                broj = brojac;
+                this.x = x;
+                this.y = y;
+            }
+            else
+            {
+                if (x >= 0) this.x = x;
+                else throw new ArgumentException("Koordinate moraju biti nenegativne");
+                if (y >= 0) this.y = y;
+                else throw new ArgumentException("Koordinate moraju biti nenegativne");
+                brojac++;
+                broj = brojac;
+            }
         }
         public Tacka()
         {

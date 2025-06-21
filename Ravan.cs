@@ -14,7 +14,6 @@ namespace PoligonSA
     {
         public static int VektorskiProizvod(Vektor A, Vektor B)
         {
-            MessageBox.Show((A.izCentra().X * B.izCentra().Y - A.izCentra().Y * B.izCentra().X).ToString());
             return A.izCentra().X * B.izCentra().Y - A.izCentra().Y * B.izCentra().X;
         }
         public static int Orijentacija(Tacka p, Tacka q, Tacka r)

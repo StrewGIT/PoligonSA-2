@@ -13,43 +13,47 @@ namespace PoligonSA
     public partial class Form1 : Form
     {
         int dotSize = 9;
-        Color c = Color.Black;
         Poligon poligon;
         bool freeze = false;
+        double currentScale;
+        int coffx, coffy;
         public Form1()
         {
             InitializeComponent();
             poligon = new Poligon();
         }
-        public void DrawAll()
+        public void DrawAll(Poligon P,Color c)
         {
             int offx = -10;
             int offy = -10;
-            int x = Math.Abs(poligon.Leftmost.X - poligon.Rightmost.X);
-            //MessageBox.Show(poligon.Leftmost.X.ToString());
-            if (poligon.Leftmost.relX < 0) offx = poligon.Leftmost.relX;
+            int x = Math.Abs(P.Leftmost.X - P.Rightmost.X);
+            //MessageBox.Show(P.Leftmost.X.ToString());
+            if (P.Leftmost.relX < 0) offx = P.Leftmost.relX;
             //MessageBox.Show(offx.ToString());
-            int y = Math.Abs(poligon.Topmost.Y - poligon.Bottommost.Y);
-            //MessageBox.Show(poligon.Topmost.Y.ToString());
-            if (poligon.Topmost.relY < 0) offy = poligon.Topmost.relY;
+            int y = Math.Abs(P.Topmost.Y - P.Bottommost.Y);
+            //MessageBox.Show(P.Topmost.Y.ToString());
+            if (P.Topmost.relY < 0) offy = P.Topmost.relY;
             //MessageBox.Show(offy.ToString());
-            double scale = 650.0 / (Math.Max(x, y) * 1.3);
+            double scale = 650.0 / (Math.Max(x, y) * 1.4);
             //MessageBox.Show(scale.ToString());
             Brush brush = Brushes.Black;
             Pen pen = new Pen(c);
             using (Graphics g = PnlDrawing.CreateGraphics())
             {
-                for (int i = 0; i < poligon.Count; i++)
+                for (int i = 0; i < P.Count; i++)
                 {
-                    int xt = (int)((poligon.Vektori(i).Pocetak.relX - offx) * scale);
-                    int yt = (int)((poligon.Vektori(i).Pocetak.relY - offy) * scale);
-                    int xt1 = (int)((poligon.Vektori(i).Kraj.relX - offx) * scale);
-                    int yt1 = (int)((poligon.Vektori(i).Kraj.relY - offy) * scale);
+                    int xt = (int)((P.Vektori(i).Pocetak.relX - offx) * scale);
+                    int yt = (int)((P.Vektori(i).Pocetak.relY - offy) * scale);
+                    int xt1 = (int)((P.Vektori(i).Kraj.relX - offx) * scale);
+                    int yt1 = (int)((P.Vektori(i).Kraj.relY - offy) * scale);
                     g.FillEllipse(brush, xt - dotSize / 2, yt - dotSize / 2, dotSize, dotSize);
-                    //MessageBox.Show((poligon.Vektori(i).Pocetak.relX - offx).ToString()  + " " + (poligon.Vektori(i).Pocetak.relY- offy).ToString() );
+                    //MessageBox.Show((P.Vektori(i).Pocetak.relX - offx).ToString()  + " " + (P.Vektori(i).Pocetak.relY- offy).ToString() );
                     g.DrawLine(pen, new Point(xt, yt), new Point(xt1, yt1));
                 }
             }
+            currentScale = scale;
+            coffx = offx;
+            coffy = offy;
         }
         private void BtnDodaj_Click(object sender, EventArgs e)
         {
@@ -61,16 +65,17 @@ namespace PoligonSA
             TboxY.Text = "";
             if(poligon.Count == 1)
             {
-                double scale = 650.0 / (Math.Max(t.X, t.Y) * 1.3);
+                double scale = 650.0 / (Math.Max(t.X, t.Y) * 1.4);
                 using (Graphics g = PnlDrawing.CreateGraphics())
                 {
                     Brush brush = Brushes.Black;
                     g.FillEllipse(brush, (int)(Math.Round(t.X * scale)) - dotSize / 2, (int)(Math.Round(t.Y * scale)) - dotSize / 2, dotSize, dotSize);
                 }
+                currentScale = scale;
             }
             else
             {
-                DrawAll();
+                DrawAll(poligon,Color.Black);
             }
         }
 
@@ -99,7 +104,7 @@ namespace PoligonSA
             {
                 poligon = new Poligon();
                 poligon.Load();
-                DrawAll();
+                DrawAll(poligon,Color.Black);
 
             }
             catch(Exception ex)
@@ -132,6 +137,46 @@ namespace PoligonSA
         {
             if (poligon.jeKonveksan()) MessageBox.Show("Poligon je konveksan");
             else MessageBox.Show("Poligon je konkavan");
+        }
+
+        private void BtnOmotac_Click(object sender, EventArgs e)
+        {
+            if (poligon.jeKonveksan())
+            {
+                MessageBox.Show("Poligon mora biti konkavan");
+            }
+            else
+            {
+                DrawAll(poligon.KonveksniPokrivac(),Color.Orange);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PnlDrawing.Invalidate();
+            PnlDrawing.Update();
+            DrawAll(poligon, Color.Black);
+        }
+
+        private void BtnPripadnost_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Da biste proverili pripadnost tačke poligonu, pritisnite na panelu gde se vaša tačka nalazi, ona će biti obojena zeleno ako se nalazi u poligonu, a crveno ako se nalazi izvan","Info");
+        }
+
+        private void PnlDrawing_MouseClick(object sender, MouseEventArgs e)
+        {
+            Tacka tacka = new Tacka((int)(Math.Round((e.X+(coffx/currentScale))/currentScale)), (int)(Math.Round((e.Y + (coffy/currentScale)) / currentScale)));
+            Brush brush = Brushes.Transparent;
+            try
+            {
+                if (poligon.PripadaTacka(tacka)) { brush = Brushes.Green; }
+                else brush = Brushes.Red;
+            }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
+            using (Graphics g = PnlDrawing.CreateGraphics())
+                {
+                    g.FillEllipse(brush, e.X - dotSize / 2, e.Y - dotSize / 2, dotSize, dotSize);
+                }
         }
     }
 }

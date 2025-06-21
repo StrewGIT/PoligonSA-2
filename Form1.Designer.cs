@@ -35,14 +35,17 @@
             this.LblY = new System.Windows.Forms.Label();
             this.BtnDodaj = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.BtnObrisi = new System.Windows.Forms.Button();
-            this.LblNaslov = new System.Windows.Forms.Label();
-            this.BtnLoad = new System.Windows.Forms.Button();
-            this.BtnSave = new System.Windows.Forms.Button();
             this.BtnObim = new System.Windows.Forms.Button();
             this.BtnProst = new System.Windows.Forms.Button();
             this.BtnPovrsina = new System.Windows.Forms.Button();
             this.BtnKonveksan = new System.Windows.Forms.Button();
+            this.BtnObrisi = new System.Windows.Forms.Button();
+            this.LblNaslov = new System.Windows.Forms.Label();
+            this.BtnLoad = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
+            this.BtnOmotac = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BtnPripadnost = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +57,7 @@
             this.PnlDrawing.Name = "PnlDrawing";
             this.PnlDrawing.Size = new System.Drawing.Size(650, 650);
             this.PnlDrawing.TabIndex = 0;
+            this.PnlDrawing.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PnlDrawing_MouseClick);
             // 
             // TboxX
             // 
@@ -109,10 +113,57 @@
             this.flowLayoutPanel1.Controls.Add(this.BtnProst);
             this.flowLayoutPanel1.Controls.Add(this.BtnPovrsina);
             this.flowLayoutPanel1.Controls.Add(this.BtnKonveksan);
+            this.flowLayoutPanel1.Controls.Add(this.BtnOmotac);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.BtnPripadnost);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(725, 205);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 457);
             this.flowLayoutPanel1.TabIndex = 6;
+            // 
+            // BtnObim
+            // 
+            this.BtnObim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnObim.Location = new System.Drawing.Point(3, 3);
+            this.BtnObim.Name = "BtnObim";
+            this.BtnObim.Size = new System.Drawing.Size(144, 49);
+            this.BtnObim.TabIndex = 0;
+            this.BtnObim.Text = "Obim";
+            this.BtnObim.UseVisualStyleBackColor = true;
+            this.BtnObim.Click += new System.EventHandler(this.BtnObim_Click);
+            // 
+            // BtnProst
+            // 
+            this.BtnProst.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProst.Location = new System.Drawing.Point(153, 3);
+            this.BtnProst.Name = "BtnProst";
+            this.BtnProst.Size = new System.Drawing.Size(144, 49);
+            this.BtnProst.TabIndex = 1;
+            this.BtnProst.Text = "Da li je prost?";
+            this.BtnProst.UseVisualStyleBackColor = true;
+            this.BtnProst.Click += new System.EventHandler(this.BtnProst_Click);
+            // 
+            // BtnPovrsina
+            // 
+            this.BtnPovrsina.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPovrsina.Location = new System.Drawing.Point(3, 58);
+            this.BtnPovrsina.Name = "BtnPovrsina";
+            this.BtnPovrsina.Size = new System.Drawing.Size(144, 49);
+            this.BtnPovrsina.TabIndex = 2;
+            this.BtnPovrsina.Text = "Površina";
+            this.BtnPovrsina.UseVisualStyleBackColor = true;
+            this.BtnPovrsina.Click += new System.EventHandler(this.BtnPovrsina_Click);
+            // 
+            // BtnKonveksan
+            // 
+            this.BtnKonveksan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnKonveksan.Location = new System.Drawing.Point(153, 58);
+            this.BtnKonveksan.Name = "BtnKonveksan";
+            this.BtnKonveksan.Size = new System.Drawing.Size(144, 49);
+            this.BtnKonveksan.TabIndex = 3;
+            this.BtnKonveksan.Text = "Da li je konveksan?";
+            this.BtnKonveksan.UseVisualStyleBackColor = true;
+            this.BtnKonveksan.Click += new System.EventHandler(this.BtnKonveksan_Click);
             // 
             // BtnObrisi
             // 
@@ -160,49 +211,38 @@
             this.BtnSave.UseVisualStyleBackColor = false;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // BtnObim
+            // BtnOmotac
             // 
-            this.BtnObim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnObim.Location = new System.Drawing.Point(3, 3);
-            this.BtnObim.Name = "BtnObim";
-            this.BtnObim.Size = new System.Drawing.Size(144, 49);
-            this.BtnObim.TabIndex = 0;
-            this.BtnObim.Text = "Obim";
-            this.BtnObim.UseVisualStyleBackColor = true;
-            this.BtnObim.Click += new System.EventHandler(this.BtnObim_Click);
+            this.BtnOmotac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnOmotac.Location = new System.Drawing.Point(3, 113);
+            this.BtnOmotac.Name = "BtnOmotac";
+            this.BtnOmotac.Size = new System.Drawing.Size(144, 49);
+            this.BtnOmotac.TabIndex = 4;
+            this.BtnOmotac.Text = "Konveksni omotac";
+            this.BtnOmotac.UseVisualStyleBackColor = true;
+            this.BtnOmotac.Click += new System.EventHandler(this.BtnOmotac_Click);
             // 
-            // BtnProst
+            // button1
             // 
-            this.BtnProst.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnProst.Location = new System.Drawing.Point(153, 3);
-            this.BtnProst.Name = "BtnProst";
-            this.BtnProst.Size = new System.Drawing.Size(144, 49);
-            this.BtnProst.TabIndex = 1;
-            this.BtnProst.Text = "Da li je prost?";
-            this.BtnProst.UseVisualStyleBackColor = true;
-            this.BtnProst.Click += new System.EventHandler(this.BtnProst_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(153, 113);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 49);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Ponovo nacrtaj - undo Konveksni omotac";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // BtnPovrsina
+            // BtnPripadnost
             // 
-            this.BtnPovrsina.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPovrsina.Location = new System.Drawing.Point(3, 58);
-            this.BtnPovrsina.Name = "BtnPovrsina";
-            this.BtnPovrsina.Size = new System.Drawing.Size(144, 49);
-            this.BtnPovrsina.TabIndex = 2;
-            this.BtnPovrsina.Text = "Površina";
-            this.BtnPovrsina.UseVisualStyleBackColor = true;
-            this.BtnPovrsina.Click += new System.EventHandler(this.BtnPovrsina_Click);
-            // 
-            // BtnKonveksan
-            // 
-            this.BtnKonveksan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnKonveksan.Location = new System.Drawing.Point(153, 58);
-            this.BtnKonveksan.Name = "BtnKonveksan";
-            this.BtnKonveksan.Size = new System.Drawing.Size(144, 49);
-            this.BtnKonveksan.TabIndex = 3;
-            this.BtnKonveksan.Text = "Da li je konveksan?";
-            this.BtnKonveksan.UseVisualStyleBackColor = true;
-            this.BtnKonveksan.Click += new System.EventHandler(this.BtnKonveksan_Click);
+            this.BtnPripadnost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPripadnost.Location = new System.Drawing.Point(3, 168);
+            this.BtnPripadnost.Name = "BtnPripadnost";
+            this.BtnPripadnost.Size = new System.Drawing.Size(294, 49);
+            this.BtnPripadnost.TabIndex = 6;
+            this.BtnPripadnost.Text = "Provera pripadnosti tacke poligonu";
+            this.BtnPripadnost.UseVisualStyleBackColor = true;
+            this.BtnPripadnost.Click += new System.EventHandler(this.BtnPripadnost_Click);
             // 
             // Form1
             // 
@@ -245,6 +285,9 @@
         private System.Windows.Forms.Button BtnProst;
         private System.Windows.Forms.Button BtnPovrsina;
         private System.Windows.Forms.Button BtnKonveksan;
+        private System.Windows.Forms.Button BtnOmotac;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnPripadnost;
     }
 }
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace PoligonSA
 {
-    internal class Poligon
+    public class Poligon
     {
         private List<Vektor> vektori;
         public Vektor Vektori(int a)
@@ -146,18 +146,25 @@ namespace PoligonSA
         }
         public bool jeKonveksan()
         {
-            int k;
-            k = Ravan.Orijentacija(vektori[vektori.Count - 1].Pocetak, vektori[vektori.Count - 1].Kraj, vektori[0].Kraj);
-            MessageBox.Show("k:" + k.ToString());
+            int k = 0;
             for (int i = 0; i < vektori.Count - 1; i++)
             {
-                MessageBox.Show(vektori[i].Pocetak.X.ToString() + " " + vektori[i].Kraj.X.ToString() +" "+ vektori[i+1].Pocetak.X.ToString() + " " + vektori[i+1].Kraj.X.ToString());
-                MessageBox.Show(vektori[i].Pocetak.Y.ToString() + " " + vektori[i].Kraj.Y.ToString() +" "+ vektori[i + 1].Pocetak.Y.ToString() + " " + vektori[i + 1].Kraj.Y.ToString());
-                if (Ravan.Orijentacija(vektori[i].Pocetak,vektori[i].Kraj, vektori[i + 1].Pocetak) != k)
-                {
-                    return false;
-                }
+                k = Math.Sign(Ravan.VektorskiProizvod(vektori[i], vektori[i + 1]));
+                if (k != 0)
+                    break;
             }
+            if (k == 0)
+                return false;
+            for (int i = 0; i < vektori.Count - 1; i++)
+            {
+                int sign = Math.Sign(Ravan.VektorskiProizvod(vektori[i], vektori[i + 1]));
+                if (sign != 0 && sign != k)
+                    return false;
+            }
+            int lastSign = Math.Sign(Ravan.VektorskiProizvod(vektori[vektori.Count - 1], vektori[0]));
+            if (lastSign != 0 && lastSign != k)
+                return false;
+
             return true;
         }
         public Poligon KonveksniPokrivac()
@@ -185,16 +192,18 @@ namespace PoligonSA
         }
         public bool PripadaTacka(Tacka A)
         {
+            if (!jeProst()) throw new Exception("Poligon mora biti prost");
             bool alternate = false;
             Random rand = new Random();
             Tacka B = new Tacka(int.MaxValue, rand.Next(int.MaxValue));
             int k = 0;
             foreach (Vektor v in vektori)
             {
-            Loop:
+            //Loop:
+                //MessageBox.Show(Ravan.Sece(v, new Vektor(A, B)).ToString());
                 if (Ravan.Sece(v, new Vektor(A, B)) == 1) k++;
                 else if (Ravan.Sece(v, new Vektor(A, B)) == -2 || Ravan.Sece(v, new Vektor(A, B)) == -1) return true;
-                else if (Ravan.Sece(v, new Vektor(A, B)) == -3 || Ravan.Sece(v, new Vektor(A, B)) == -4)
+                /*else if (Ravan.Sece(v, new Vektor(A, B)) == -3 || Ravan.Sece(v, new Vektor(A, B)) == -4)
                 {
                     if (alternate)
                     {
@@ -206,9 +215,10 @@ namespace PoligonSA
                         B = new Tacka(rand.Next(int.MaxValue), int.MaxValue);
                         alternate = true;
                     }
-                    goto Loop;
-                }
+                    goto Loop;*/
+                //}
             }
+            //MessageBox.Show("k:" + k.ToString());
             return (k % 2 == 1);
         }
         public void Save()
