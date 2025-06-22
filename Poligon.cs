@@ -11,6 +11,7 @@ namespace PoligonSA
     public class Poligon
     {
         private List<Vektor> vektori;
+        public Tacka Ref;
         public Vektor Vektori(int a)
         {
             return vektori[a];
@@ -92,6 +93,7 @@ namespace PoligonSA
             {
                 tacka.relX = 0;
                 tacka.relY = 0;
+                Ref = tacka;
                 vektori.Add(new Vektor(tacka));
             }
 
@@ -146,6 +148,7 @@ namespace PoligonSA
         }
         public bool jeKonveksan()
         {
+            if (!jeProst()) throw new Exception("Poligon mora biti prost");
             int k = 0;
             for (int i = 0; i < vektori.Count - 1; i++)
             {
@@ -169,6 +172,7 @@ namespace PoligonSA
         }
         public Poligon KonveksniPokrivac()
         {
+            
             Poligon Pokrivac = new Poligon();
             int xLevo = 0;
             for (int i = 0; i < vektori.Count; i++)
@@ -195,10 +199,11 @@ namespace PoligonSA
             if (!jeProst()) throw new Exception("Poligon mora biti prost");
             bool alternate = false;
             Random rand = new Random();
-            Tacka B = new Tacka(int.MaxValue, rand.Next(int.MaxValue));
+            Tacka B = new Tacka(10000, rand.Next(10000));
             int k = 0;
             foreach (Vektor v in vektori)
             {
+                //Vektor v1 = new Vektor(new Tacka(v.Pocetak.relX, v.Pocetak.relY), new Tacka(v.Kraj.relX, v.Kraj.relY));
             //Loop:
                 //MessageBox.Show(Ravan.Sece(v, new Vektor(A, B)).ToString());
                 if (Ravan.Sece(v, new Vektor(A, B)) == 1) k++;
@@ -207,12 +212,12 @@ namespace PoligonSA
                 {
                     if (alternate)
                     {
-                        B = new Tacka(int.MaxValue, rand.Next(int.MaxValue));
+                        B = new Tacka(10000, rand.Next(10000));
                         alternate = false;
                     }
                     else
                     {
-                        B = new Tacka(rand.Next(int.MaxValue), int.MaxValue);
+                        B = new Tacka(rand.Next(10000), 10000);
                         alternate = true;
                     }
                     goto Loop;*/

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
+using static System.Windows.Forms.AxHost;
 namespace PoligonSA
 {
     public partial class Form1 : Form
@@ -147,7 +148,11 @@ namespace PoligonSA
             }
             else
             {
+                try
+                {
                 DrawAll(poligon.KonveksniPokrivac(),Color.Orange);
+                }
+                catch(Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
 
@@ -160,23 +165,51 @@ namespace PoligonSA
 
         private void BtnPripadnost_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Da biste proverili pripadnost tačke poligonu, pritisnite na panelu gde se vaša tačka nalazi, ona će biti obojena zeleno ako se nalazi u poligonu, a crveno ako se nalazi izvan","Info");
+            Tacka tacka = new Tacka(int.Parse(TboxXPr.Text) * 10, int.Parse(TboxYPr.Text) * 10);
+            Pripadnost(tacka);
         }
-
-        private void PnlDrawing_MouseClick(object sender, MouseEventArgs e)
+        public void Pripadnost(Tacka t)
         {
-            Tacka tacka = new Tacka((int)(Math.Round((e.X+(coffx/currentScale))/currentScale)), (int)(Math.Round((e.Y + (coffy/currentScale)) / currentScale)));
-            Brush brush = Brushes.Transparent;
             try
             {
-                if (poligon.PripadaTacka(tacka)) { brush = Brushes.Green; }
-                else brush = Brushes.Red;
+                if (poligon.PripadaTacka(t)) { MessageBox.Show("Pripada"); }
+                else MessageBox.Show("Ne pripada");
             }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
-            using (Graphics g = PnlDrawing.CreateGraphics())
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void BtnBojenje_Click(object sender, EventArgs e)
+        {
+            if (!poligon.jeProst()) { MessageBox.Show("Poligon mora biti prost");return; }
+            if (!poligon.jeKonveksan()) { MessageBox.Show("Poligon mora biti konveksan"); return; }
+            for (int i = poligon.Leftmost.X; i < poligon.Rightmost.X; i++)
+            {
+                for(int j = poligon.Topmost.Y; j < poligon.Bottommost.Y; j++)
                 {
-                    g.FillEllipse(brush, e.X - dotSize / 2, e.Y - dotSize / 2, dotSize, dotSize);
+                    Brush brush = Brushes.Green;
+                    Tacka t = new Tacka(i,j);
+                    t.relX = t.X - poligon.Ref.X;
+                    t.relY = t.Y - poligon.Ref.Y;
+                    try
+                    {
+                        if (poligon.PripadaTacka(t))
+                        {
+                            using (Graphics g = PnlDrawing.CreateGraphics())
+                            {
+                                int xt = (int)((t.relX - coffx) * currentScale);
+                                int yt = (int)((t.relY - coffy) * currentScale);
+                                g.FillEllipse(brush, xt - dotSize / 2, yt - dotSize / 2, dotSize, dotSize);
+                            }
+                        }
+                    }
+                    catch (Exception ex) {MessageBox.Show(ex.Message); }
                 }
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
