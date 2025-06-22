@@ -207,6 +207,17 @@ namespace PoligonSA
             }
         }
 
+        private void BtnTeziste_Click(object sender, EventArgs e)
+        {
+            (double, double) d = poligon.Teziste;
+            MessageBox.Show("Teziste :(" + d.Item1 + "," + d.Item2 + ")");
+        }
+
+        private void BtnMomentInercije_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(poligon.MomentInercije().ToString());
+        }
+
         private void label2_Click(object sender, EventArgs e)
         {
 

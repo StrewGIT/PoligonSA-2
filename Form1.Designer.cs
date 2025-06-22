@@ -51,6 +51,9 @@
             this.TboxXPr = new System.Windows.Forms.TextBox();
             this.TboxYPr = new System.Windows.Forms.TextBox();
             this.BtnBojenje = new System.Windows.Forms.Button();
+            this.BtnTeziste = new System.Windows.Forms.Button();
+            this.BtnMomentInercije = new System.Windows.Forms.Button();
+            this.LblInfo = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,7 +106,7 @@
             // 
             this.BtnDodaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(250)))), ((int)(((byte)(158)))));
             this.BtnDodaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnDodaj.Location = new System.Drawing.Point(725, 105);
+            this.BtnDodaj.Location = new System.Drawing.Point(725, 180);
             this.BtnDodaj.Name = "BtnDodaj";
             this.BtnDodaj.Size = new System.Drawing.Size(123, 30);
             this.BtnDodaj.TabIndex = 5;
@@ -125,9 +128,11 @@
             this.flowLayoutPanel1.Controls.Add(this.TboxYPr);
             this.flowLayoutPanel1.Controls.Add(this.BtnPripadnost);
             this.flowLayoutPanel1.Controls.Add(this.BtnBojenje);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(725, 205);
+            this.flowLayoutPanel1.Controls.Add(this.BtnTeziste);
+            this.flowLayoutPanel1.Controls.Add(this.BtnMomentInercije);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(725, 279);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 457);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 362);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // BtnObim
@@ -211,7 +216,7 @@
             // 
             this.BtnObrisi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
             this.BtnObrisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnObrisi.Location = new System.Drawing.Point(894, 105);
+            this.BtnObrisi.Location = new System.Drawing.Point(894, 180);
             this.BtnObrisi.Name = "BtnObrisi";
             this.BtnObrisi.Size = new System.Drawing.Size(123, 30);
             this.BtnObrisi.TabIndex = 7;
@@ -233,7 +238,7 @@
             // 
             this.BtnLoad.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BtnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLoad.Location = new System.Drawing.Point(894, 150);
+            this.BtnLoad.Location = new System.Drawing.Point(894, 225);
             this.BtnLoad.Name = "BtnLoad";
             this.BtnLoad.Size = new System.Drawing.Size(123, 30);
             this.BtnLoad.TabIndex = 11;
@@ -245,7 +250,7 @@
             // 
             this.BtnSave.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BtnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSave.Location = new System.Drawing.Point(725, 150);
+            this.BtnSave.Location = new System.Drawing.Point(725, 225);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(123, 30);
             this.BtnSave.TabIndex = 10;
@@ -301,11 +306,45 @@
             this.BtnBojenje.UseVisualStyleBackColor = true;
             this.BtnBojenje.Click += new System.EventHandler(this.BtnBojenje_Click);
             // 
+            // BtnTeziste
+            // 
+            this.BtnTeziste.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnTeziste.Location = new System.Drawing.Point(3, 310);
+            this.BtnTeziste.Name = "BtnTeziste";
+            this.BtnTeziste.Size = new System.Drawing.Size(144, 49);
+            this.BtnTeziste.TabIndex = 17;
+            this.BtnTeziste.Text = "Težište";
+            this.BtnTeziste.UseVisualStyleBackColor = true;
+            this.BtnTeziste.Click += new System.EventHandler(this.BtnTeziste_Click);
+            // 
+            // BtnMomentInercije
+            // 
+            this.BtnMomentInercije.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnMomentInercije.Location = new System.Drawing.Point(153, 310);
+            this.BtnMomentInercije.Name = "BtnMomentInercije";
+            this.BtnMomentInercije.Size = new System.Drawing.Size(144, 49);
+            this.BtnMomentInercije.TabIndex = 18;
+            this.BtnMomentInercije.Text = "Moment inercije";
+            this.BtnMomentInercije.UseVisualStyleBackColor = true;
+            this.BtnMomentInercije.Click += new System.EventHandler(this.BtnMomentInercije_Click);
+            // 
+            // LblInfo
+            // 
+            this.LblInfo.AutoSize = true;
+            this.LblInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblInfo.Location = new System.Drawing.Point(708, 110);
+            this.LblInfo.Name = "LblInfo";
+            this.LblInfo.Size = new System.Drawing.Size(352, 40);
+            this.LblInfo.TabIndex = 12;
+            this.LblInfo.Text = "Koordinate se računaju 10 puta veće nego \r\nzapisane zbog preciznosti";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1069, 681);
+            this.Controls.Add(this.LblInfo);
             this.Controls.Add(this.BtnLoad);
             this.Controls.Add(this.BtnSave);
             this.Controls.Add(this.LblNaslov);
@@ -351,6 +390,9 @@
         private System.Windows.Forms.TextBox TboxXPr;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnBojenje;
+        private System.Windows.Forms.Button BtnTeziste;
+        private System.Windows.Forms.Button BtnMomentInercije;
+        private System.Windows.Forms.Label LblInfo;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -248,6 +249,49 @@ namespace PoligonSA
                 Dodaj(new Tacka(int.Parse(strings[0]), int.Parse(strings[1])));
             }
             sr.Close();
+        }
+        public (double,double) Teziste
+        {
+            get
+            {
+                double Xc = 1 / (6 * Povrsina());
+                double Yc = 1 / (6 * Povrsina());
+                double Xs= 0, Ys= 0;
+                for(int i = 0; i < Count; i++)
+                {
+                    Xs += ((vektori[i].Pocetak.X) + vektori[(i + 1) % Count].Pocetak.X) * ((vektori[i].Pocetak.X* vektori[(i + 1) % Count].Pocetak.Y) - (vektori[i].Pocetak.Y * vektori[(i + 1) % Count].Pocetak.X));
+                    Ys += (vektori[i].Pocetak.Y + vektori[(i + 1) % Count].Pocetak.Y) * ((vektori[i].Pocetak.X * vektori[(i + 1) % Count].Pocetak.Y) - (vektori[i].Pocetak.Y * vektori[(i + 1) % Count].Pocetak.X));
+                }
+                return (Xs * Xc, Ys * Yc);
+            }
+        }
+        public double MomentInercije()
+        {
+            if (Count < 3)
+                throw new Exception("Poligon mora imati bar 3 temena");
+
+            (double,double) C = Teziste;
+            double inertia = 0;
+
+            for (int i = 0; i < Count; i++)
+            {
+                (double, double) A = (vektori[i].Pocetak.X, vektori[i].Pocetak.Y);
+                (double, double) B = (vektori[(i + 1) % Count].Pocetak.X, vektori[(i + 1) % Count].Pocetak.Y);
+
+                double x0 = A.Item1 - C.Item1;
+                double y0 = A.Item2 - C.Item2;
+                double x1 = B.Item1 - C.Item1;
+                double y1 = B.Item2 - C.Item2;
+
+                double cross = x0 * y1 - x1 * y0;
+
+                double term = (x0 * x0 + x0 * x1 + x1 * x1 +
+                               y0 * y0 + y0 * y1 + y1 * y1);
+
+                inertia += cross * term;
+            }
+
+            return Math.Abs(inertia) / 12.0;
         }
     }
 }
