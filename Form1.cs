@@ -181,7 +181,6 @@ namespace PoligonSA
         private void BtnBojenje_Click(object sender, EventArgs e)
         {
             if (!poligon.jeProst()) { MessageBox.Show("Poligon mora biti prost");return; }
-            if (!poligon.jeKonveksan()) { MessageBox.Show("Poligon mora biti konveksan"); return; }
             for (int i = poligon.Leftmost.X; i < poligon.Rightmost.X; i++)
             {
                 for(int j = poligon.Topmost.Y; j < poligon.Bottommost.Y; j++)
