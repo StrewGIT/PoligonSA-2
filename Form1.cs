@@ -208,8 +208,15 @@ namespace PoligonSA
 
         private void BtnTeziste_Click(object sender, EventArgs e)
         {
-            (double, double) d = poligon.Teziste;
-            MessageBox.Show("Teziste :(" + d.Item1 + "," + d.Item2 + ")");
+            Tacka t = new Tacka((int)Math.Round(poligon.Teziste.Item1),(int)Math.Round(poligon.Teziste.Item2));
+            t.relX = t.X - poligon.Ref.X;
+            t.relY = t.Y - poligon.Ref.Y;
+            int xt = (int)((t.relX - coffx) * currentScale);
+            int yt = (int)((t.relY - coffy) * currentScale);
+            using (Graphics g = PnlDrawing.CreateGraphics())
+            {
+                g.FillEllipse(Brushes.DarkOrange, xt - dotSize / 2, yt - dotSize / 2, dotSize, dotSize);
+            }
         }
 
         private void BtnMomentInercije_Click(object sender, EventArgs e)
