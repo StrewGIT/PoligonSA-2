@@ -145,7 +145,7 @@ namespace PoligonSA
                 zbir += vektori[i].Kraj.X * vektori[i + 1].Kraj.Y;
                 zbir -= vektori[i].Kraj.Y * vektori[i + 1].Kraj.X;
             }
-            return (double)(zbir) / 2.0;
+            return (double)(Math.Abs(zbir)) / 2.0;
         }
         public bool jeKonveksan()
         {

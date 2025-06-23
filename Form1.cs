@@ -141,24 +141,34 @@ namespace PoligonSA
 
         private void BtnKonveksan_Click(object sender, EventArgs e)
         {
-            if (poligon.jeKonveksan()) MessageBox.Show("Poligon je konveksan");
-            else MessageBox.Show("Poligon je konkavan");
+            try
+            {
+                if (poligon.jeKonveksan()) MessageBox.Show("Poligon je konveksan");
+                else MessageBox.Show("Poligon je konkavan");
+            }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void BtnOmotac_Click(object sender, EventArgs e)
         {
-            if (poligon.jeKonveksan())
+            try
             {
-                MessageBox.Show("Poligon mora biti konkavan");
-            }
-            else
-            {
-                try
+                if (poligon.jeKonveksan())
                 {
-                DrawAll(poligon.KonveksniPokrivac(),Color.Orange);
+                    MessageBox.Show("Poligon mora biti konkavan");
                 }
-                catch(Exception ex) { MessageBox.Show(ex.Message); }
+                else
+                {
+                    try
+                    {
+                        DrawAll(poligon.KonveksniPokrivac(),Color.Orange);
+                    }
+                    catch(Exception ex) { MessageBox.Show(ex.Message); }
+                }
             }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
