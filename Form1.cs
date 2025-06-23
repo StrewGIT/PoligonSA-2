@@ -60,24 +60,29 @@ namespace PoligonSA
         {
             PnlDrawing.Invalidate();
             PnlDrawing.Update();
-            Tacka t = new Tacka(int.Parse(TboxX.Text)*10, int.Parse(TboxY.Text)*10);
-            poligon.Dodaj(t);
-            TboxX.Text = "";
-            TboxY.Text = "";
-            if(poligon.Count == 1)
+            try
             {
-                double scale = 650.0 / (Math.Max(t.X, t.Y) * 1.4);
-                using (Graphics g = PnlDrawing.CreateGraphics())
+                Tacka t = new Tacka(int.Parse(TboxX.Text)*10, int.Parse(TboxY.Text)*10);
+                poligon.Dodaj(t);
+                TboxX.Text = "";
+                TboxY.Text = "";
+                if (poligon.Count == 1)
                 {
-                    Brush brush = Brushes.Black;
-                    g.FillEllipse(brush, (int)(Math.Round(t.X * scale)) - dotSize / 2, (int)(Math.Round(t.Y * scale)) - dotSize / 2, dotSize, dotSize);
+                    double scale = 650.0 / (Math.Max(t.X, t.Y) * 1.4);
+                    using (Graphics g = PnlDrawing.CreateGraphics())
+                    {
+                        Brush brush = Brushes.Black;
+                        g.FillEllipse(brush, (int)(Math.Round(t.X * scale)) - dotSize / 2, (int)(Math.Round(t.Y * scale)) - dotSize / 2, dotSize, dotSize);
+                    }
+                    currentScale = scale;
                 }
-                currentScale = scale;
+                else
+                {
+                    DrawAll(poligon, Color.Black);
+                }
             }
-            else
-            {
-                DrawAll(poligon,Color.Black);
-            }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
+            
         }
 
         private void BtnObrisi_Click(object sender, EventArgs e)

@@ -26,7 +26,7 @@ namespace PoligonSA
                 this.pocetak = pocetak;
                 this.kraj = kraj;
             }
-            catch(ArgumentException ex) { MessageBox.Show(ex.Message);}
+            catch(Exception ex) { MessageBox.Show(ex.Message);}
         }
         public Vektor(Tacka kraj)
         {
@@ -35,7 +35,7 @@ namespace PoligonSA
                 this.pocetak = new Tacka();
                 this.kraj = kraj;
             }
-            catch(ArgumentException ex) { MessageBox.Show(ex.Message);}
+            catch(Exception ex) { MessageBox.Show(ex.Message);}
         }
         public double D
         {

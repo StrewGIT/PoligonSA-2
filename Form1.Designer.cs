@@ -41,18 +41,18 @@
             this.BtnKonveksan = new System.Windows.Forms.Button();
             this.BtnOmotac = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TboxXPr = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TboxYPr = new System.Windows.Forms.TextBox();
             this.BtnPripadnost = new System.Windows.Forms.Button();
+            this.BtnBojenje = new System.Windows.Forms.Button();
+            this.BtnTeziste = new System.Windows.Forms.Button();
+            this.BtnMomentInercije = new System.Windows.Forms.Button();
             this.BtnObrisi = new System.Windows.Forms.Button();
             this.LblNaslov = new System.Windows.Forms.Label();
             this.BtnLoad = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TboxXPr = new System.Windows.Forms.TextBox();
-            this.TboxYPr = new System.Windows.Forms.TextBox();
-            this.BtnBojenje = new System.Windows.Forms.Button();
-            this.BtnTeziste = new System.Windows.Forms.Button();
-            this.BtnMomentInercije = new System.Windows.Forms.Button();
             this.LblInfo = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -201,6 +201,43 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 165);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(21, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "X";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // TboxXPr
+            // 
+            this.TboxXPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TboxXPr.Location = new System.Drawing.Point(30, 168);
+            this.TboxXPr.Name = "TboxXPr";
+            this.TboxXPr.Size = new System.Drawing.Size(100, 26);
+            this.TboxXPr.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(136, 165);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(21, 20);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Y";
+            // 
+            // TboxYPr
+            // 
+            this.TboxYPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TboxYPr.Location = new System.Drawing.Point(163, 168);
+            this.TboxYPr.Name = "TboxYPr";
+            this.TboxYPr.Size = new System.Drawing.Size(100, 26);
+            this.TboxYPr.TabIndex = 12;
+            // 
             // BtnPripadnost
             // 
             this.BtnPripadnost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -211,6 +248,39 @@
             this.BtnPripadnost.Text = "Provera pripadnosti tacke poligonu";
             this.BtnPripadnost.UseVisualStyleBackColor = true;
             this.BtnPripadnost.Click += new System.EventHandler(this.BtnPripadnost_Click);
+            // 
+            // BtnBojenje
+            // 
+            this.BtnBojenje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBojenje.Location = new System.Drawing.Point(3, 255);
+            this.BtnBojenje.Name = "BtnBojenje";
+            this.BtnBojenje.Size = new System.Drawing.Size(294, 49);
+            this.BtnBojenje.TabIndex = 16;
+            this.BtnBojenje.Text = "Bojenje poligona";
+            this.BtnBojenje.UseVisualStyleBackColor = true;
+            this.BtnBojenje.Click += new System.EventHandler(this.BtnBojenje_Click);
+            // 
+            // BtnTeziste
+            // 
+            this.BtnTeziste.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnTeziste.Location = new System.Drawing.Point(3, 310);
+            this.BtnTeziste.Name = "BtnTeziste";
+            this.BtnTeziste.Size = new System.Drawing.Size(144, 49);
+            this.BtnTeziste.TabIndex = 17;
+            this.BtnTeziste.Text = "Težište";
+            this.BtnTeziste.UseVisualStyleBackColor = true;
+            this.BtnTeziste.Click += new System.EventHandler(this.BtnTeziste_Click);
+            // 
+            // BtnMomentInercije
+            // 
+            this.BtnMomentInercije.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnMomentInercije.Location = new System.Drawing.Point(153, 310);
+            this.BtnMomentInercije.Name = "BtnMomentInercije";
+            this.BtnMomentInercije.Size = new System.Drawing.Size(144, 49);
+            this.BtnMomentInercije.TabIndex = 18;
+            this.BtnMomentInercije.Text = "Moment inercije";
+            this.BtnMomentInercije.UseVisualStyleBackColor = true;
+            this.BtnMomentInercije.Click += new System.EventHandler(this.BtnMomentInercije_Click);
             // 
             // BtnObrisi
             // 
@@ -258,76 +328,6 @@
             this.BtnSave.UseVisualStyleBackColor = false;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(136, 165);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 20);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Y";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 165);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 20);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "X";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // TboxXPr
-            // 
-            this.TboxXPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TboxXPr.Location = new System.Drawing.Point(30, 168);
-            this.TboxXPr.Name = "TboxXPr";
-            this.TboxXPr.Size = new System.Drawing.Size(100, 26);
-            this.TboxXPr.TabIndex = 13;
-            // 
-            // TboxYPr
-            // 
-            this.TboxYPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TboxYPr.Location = new System.Drawing.Point(163, 168);
-            this.TboxYPr.Name = "TboxYPr";
-            this.TboxYPr.Size = new System.Drawing.Size(100, 26);
-            this.TboxYPr.TabIndex = 12;
-            // 
-            // BtnBojenje
-            // 
-            this.BtnBojenje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBojenje.Location = new System.Drawing.Point(3, 255);
-            this.BtnBojenje.Name = "BtnBojenje";
-            this.BtnBojenje.Size = new System.Drawing.Size(294, 49);
-            this.BtnBojenje.TabIndex = 16;
-            this.BtnBojenje.Text = "Bojenje poligona";
-            this.BtnBojenje.UseVisualStyleBackColor = true;
-            this.BtnBojenje.Click += new System.EventHandler(this.BtnBojenje_Click);
-            // 
-            // BtnTeziste
-            // 
-            this.BtnTeziste.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnTeziste.Location = new System.Drawing.Point(3, 310);
-            this.BtnTeziste.Name = "BtnTeziste";
-            this.BtnTeziste.Size = new System.Drawing.Size(144, 49);
-            this.BtnTeziste.TabIndex = 17;
-            this.BtnTeziste.Text = "Težište";
-            this.BtnTeziste.UseVisualStyleBackColor = true;
-            this.BtnTeziste.Click += new System.EventHandler(this.BtnTeziste_Click);
-            // 
-            // BtnMomentInercije
-            // 
-            this.BtnMomentInercije.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnMomentInercije.Location = new System.Drawing.Point(153, 310);
-            this.BtnMomentInercije.Name = "BtnMomentInercije";
-            this.BtnMomentInercije.Size = new System.Drawing.Size(144, 49);
-            this.BtnMomentInercije.TabIndex = 18;
-            this.BtnMomentInercije.Text = "Moment inercije";
-            this.BtnMomentInercije.UseVisualStyleBackColor = true;
-            this.BtnMomentInercije.Click += new System.EventHandler(this.BtnMomentInercije_Click);
-            // 
             // LblInfo
             // 
             this.LblInfo.AutoSize = true;
@@ -357,7 +357,7 @@
             this.Controls.Add(this.TboxX);
             this.Controls.Add(this.PnlDrawing);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Poligon";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
